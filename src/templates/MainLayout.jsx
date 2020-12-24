@@ -1,10 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { AppBar, Badge, Box, Container, Grid, IconButton, Paper, Toolbar, Typography } from '@material-ui/core'
+import { AppBar, Box, Container, Grid, Paper, Toolbar, Typography } from '@material-ui/core'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
-
-import NotificationsIcon from '@material-ui/icons/Notifications'
 import { Copyright } from '../components/Copyright'
 import { useAuth } from '../hooks/useAuth'
 import { Redirect } from 'react-router-dom'
@@ -48,7 +46,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   fixedHeight: {
-    height: 240,
+    padding: theme.spacing(2),
+    textAlign: 'center',
   },
 }))
 
@@ -57,7 +56,8 @@ export const MainLayout = ({ children, navItems, optionalNavItems, title }) => {
   const classes = useStyles()
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight)
 
-  if (initialized && user) return <Redirect to="/goals" />
+  if (!initialized) return null
+  if (user) return <Redirect to="/dashboard" />
 
   return (
     <div className={classes.root}>
@@ -66,11 +66,6 @@ export const MainLayout = ({ children, navItems, optionalNavItems, title }) => {
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             {title}
           </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
         </Toolbar>
       </AppBar>
       <main className={classes.content}>

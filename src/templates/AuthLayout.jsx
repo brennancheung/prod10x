@@ -1,14 +1,16 @@
-import { AppBar, Badge, Box, Container, CssBaseline, Divider, Drawer, Grid, IconButton, List, Paper, Toolbar, Typography } from '@material-ui/core'
+import { AppBar, Box, Container, CssBaseline, Divider, Drawer, Grid, IconButton, List, Paper, Toolbar, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
-import MenuIcon from '@material-ui/icons/Menu'
-import NotificationsIcon from '@material-ui/icons/Notifications'
 import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { Copyright } from '../components/Copyright'
 import { useAuth } from '../hooks/useAuth'
+import { UserAvatarMenu } from '../components/UserAvatarMenu'
+import {
+  ChevronLeft as ChevronLeftIcon,
+  Menu as MenuIcon,
+} from '@material-ui/icons'
 
 const drawerWidth = 240
 
@@ -99,7 +101,6 @@ export const AuthLayout = ({ children, navItems, optionalNavItems, title }) => {
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight)
   const { initialized, user } = useAuth()
 
-  console.log(initialized, user)
   if (initialized && !user) return <Redirect to="/" />
 
   return (
@@ -113,11 +114,7 @@ export const AuthLayout = ({ children, navItems, optionalNavItems, title }) => {
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             {title}
           </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
+          <UserAvatarMenu />
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" classes={{ paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose) }} open={open}>

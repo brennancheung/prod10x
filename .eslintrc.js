@@ -21,7 +21,8 @@ module.exports = {
   rules: {
     'comma-dangle': ['error', {
       arrays: 'only-multiline',
-      objects: 'only-multiline'
+      objects: 'only-multiline',
+      imports: 'only-multiline'
     }],
     'no-unused-vars': ['warn'],
     'react/prop-types': ['warn'],

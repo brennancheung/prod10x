@@ -4,18 +4,15 @@ import PropTypes from 'prop-types'
 import { MenuItem, ListItemIcon, ListItemText } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 
-import { Dashboard, CallMerge } from '@material-ui/icons'
-
-import PeopleIcon from '@material-ui/icons/People'
-import BarChartIcon from '@material-ui/icons/BarChart'
-import LayersIcon from '@material-ui/icons/Layers'
+import { Assessment, BarChart, Dashboard, MyLocation, List, Timer } from '@material-ui/icons'
 
 const items = [
   { text: 'Dashboard',    to: '/',             icon: <Dashboard /> },
-  { text: 'Goals',        to: '/goals',        icon: <CallMerge /> },
-  { text: 'Customers',    to: '/customers',    icon: <PeopleIcon /> },
-  { text: 'Reports',      to: '/reports',      icon: <BarChartIcon /> },
-  { text: 'Integrations', to: '/integrations', icon: <LayersIcon /> },
+  { text: 'Goals',        to: '/goals',        icon: <MyLocation /> },
+  { text: 'Tasks',        to: '/tasks',        icon: <List /> },
+  { text: 'Reports',      to: '/reports',      icon: <Assessment /> },
+  { text: 'Weight',       to: '/weight',       icon: <BarChart /> },
+  { text: 'Time',         to: '/time',         icon: <Timer /> },
 ]
 
 const Nav = ({ text, to, icon }) => (
